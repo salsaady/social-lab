@@ -44,6 +44,32 @@ export const Navbar = () => {
                     </Link>
                 </div>
 
+                {/* Desktop auth */}
+
+                <div className="hidden md:flex items-center">
+                    {user ? (
+                        <div className="flex items-center space-x-4">
+                            {user.user_metadata.avatar_url && (
+                                <img 
+                                  src={user.user_metadata.avatar_url} 
+                                  alt="User Avater"
+                                  className="w-8 h-8 rounded-full object-cover"/>
+                            )}
+                            <span className="text-gray-300"> {displayName}</span>
+                            <button onClick={signOut} className="bg-red-500 px-3 py-1 rounded">
+                                Sign Out
+                            </button>
+                        </div>
+                    ) : (
+                    <button onClick={signInWithGitHub}>
+                        Sign In With Github
+                    </button>
+
+                    )}
+
+                    
+                </div>
+
                 {/* Mobile Menu Button */}
 
                 <div className="md:hidden">
@@ -81,23 +107,7 @@ export const Navbar = () => {
                 </div>
         </div>
 
-                {/* Desktop auth */}
-
-                <div>
-                    {user ? (
-                        <div>
-                            <span> {displayName}</span>
-                            <button onClick={signOut}>Sign Out</button>
-                        </div>
-                    ) : (
-                    <button onClick={signInWithGitHub}>
-                        Sign In With Github
-                    </button>
-
-                    )}
-
-                    
-                </div>
+                
 
                 {/* Mobine Menu */}
                 {menuOpen && (                
